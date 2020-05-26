@@ -191,7 +191,8 @@ def main():
     # save overloaded model config in the output directory
     save_config(cfg, output_config_path)
 
-    model = train(cfg, args.local_rank, args.distributed)
+    # model = train(cfg, args.local_rank, args.distributed)
+    model = train(cfg, args.local_rank, False)
 
     if not args.skip_test:
         run_test(cfg, model, args.distributed)

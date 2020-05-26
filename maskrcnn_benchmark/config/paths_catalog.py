@@ -5,7 +5,7 @@ import os
 from copy import deepcopy
 
 class DatasetCatalog(object):
-    DATA_DIR = "datasets"
+    DATA_DIR = "/dockerShared/hdd/Dataset_orig/"
     DATASETS = {
         "coco_2017_train": {
             "img_dir": "coco/train2017",
@@ -30,6 +30,14 @@ class DatasetCatalog(object):
         "coco_2014_valminusminival": {
             "img_dir": "coco/val2014",
             "ann_file": "coco/annotations/instances_valminusminival2014.json"
+        },
+        "msize_train": {
+            "img_dir": "Training/images",
+            "ann_file": "Training/annotation.json"
+        },
+        "msize_valid": {
+            "img_dir": "validation/images",
+            "ann_file": "validation/annotation.json"
         },
         "keypoints_coco_2014_train": {
             "img_dir": "coco/train2014",
@@ -171,6 +179,17 @@ class DatasetCatalog(object):
             )
             return dict(
                 factory="PascalVOCDataset",
+                args=args,
+            )
+        elif "msize" in name:
+            data_dir = DatasetCatalog.DATA_DIR
+            attrs = DatasetCatalog.DATASETS[name]
+            args = dict(
+                root=os.path.join(data_dir, attrs["img_dir"]),
+                ann_file=os.path.join(data_dir, attrs["ann_file"]),
+            )
+            return dict(
+                factory="MSIZEDataset",
                 args=args,
             )
         elif "cityscapes" in name:

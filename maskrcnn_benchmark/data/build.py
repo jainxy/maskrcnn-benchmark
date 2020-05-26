@@ -36,7 +36,7 @@ def build_dataset(dataset_list, transforms, dataset_catalog, is_train=True):
         args = data["args"]
         # for COCODataset, we want to remove images without annotations
         # during training
-        if data["factory"] == "COCODataset":
+        if data["factory"] in ["COCODataset", "MSIZEDataset"]:
             args["remove_images_without_annotations"] = is_train
         if data["factory"] == "PascalVOCDataset":
             args["use_difficult"] = not is_train
@@ -170,7 +170,7 @@ def make_data_loader(cfg, is_train=True, is_distributed=False, start_iter=0, is_
         num_workers = cfg.DATALOADER.NUM_WORKERS
         data_loader = torch.utils.data.DataLoader(
             dataset,
-            num_workers=num_workers,
+            num_workers=1,
             batch_sampler=batch_sampler,
             collate_fn=collator,
         )
