@@ -24,7 +24,7 @@ def evaluate(dataset, predictions, output_folder, **kwargs):
         return voc_evaluation(**args)
     elif isinstance(dataset, datasets.AbstractDataset):
         return abs_cityscapes_evaluation(**args)
-    elif isinstance(dataset, datasets.MsizeDataset):
+    elif isinstance(dataset, datasets.MSIZEDataset):
         return coco_evaluation(**args)
     else:
         dataset_name = dataset.__class__.__name__

@@ -7,6 +7,7 @@ import argparse
 from tqdm import tqdm, trange
 
 config_file = "../configs/caffe2/e2e_mask_rcnn_R_50_FPN_1x_caffe2.yaml"
+# config_file = "../configs/e2e_mask_msize_rcnn_R_50_FPN_1x_test.yaml"
 
 # parse arguments
 parser = argparse.ArgumentParser("Perform inference with MaskRCNN")

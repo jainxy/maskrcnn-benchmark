@@ -1,6 +1,6 @@
 MODEL:
   META_ARCHITECTURE: "GeneralizedRCNN"
-  WEIGHT: "pretrained_model/mask_rcnn_R-50-FPN_1x_detectron_no_last_layers.pth"
+  WEIGHT: "../output/model_0005000.pth"
   BACKBONE:
     CONV_BODY: "R-50-FPN"
   RESNETS:
